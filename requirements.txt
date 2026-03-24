@@ -1,0 +1,5 @@
+# 按需取消注释，例如:
+# fastapi>=0.110
+# uvicorn[standard]>=0.27
+# httpx>=0.27
+# pytest>=8.0
