@@ -1,9 +1,18 @@
-"""应用入口（可按框架替换为 FastAPI/Flask 等）。"""
+from fastapi import FastAPI
+import uuid
 
+app = FastAPI()
 
-def main() -> None:
-    print("API learning project — 在 src/ 中实现你的 API。")
+notes = []
 
+@app.post("/notes")
+def create_note(note: dict):
+    content = note.get("content")    # 1. 从请求里拿 content
+    note_id = str(uuid.uuid4())   # 2. 生成 id
+    new_note = {
+        "id": note_id,
+        "content": content
+    }
+    notes.append(new_note)   # 3. 存到 notes
+    return {"status": "success", "data": new_note}   # 4. 返回结果
 
-if __name__ == "__main__":
-    main()
